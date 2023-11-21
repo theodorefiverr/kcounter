@@ -57,16 +57,16 @@ else:
     
 if __name__ == '__main__':
     setup_dict = {
-        'name': 'Ki67_counter_v2-R2023a',
+        'name': 'Ki67_counter-R2023a',
         'version': '9.14',
-        'description': 'A Python interface to Ki67_counter_v2',
+        'description': 'A Python interface to Ki67_counter',
         'author': 'MathWorks',
         'url': 'https://www.mathworks.com/',
         'platforms': ['Linux', 'Windows', 'macOS'],
         'packages': [
-            'Ki67_counter_v2'
+            'Ki67_counter'
         ],
-        'package_data': {'Ki67_counter_v2': ['*.ctf']}
+        'package_data': {'Ki67_counter': ['*.ctf']}
     }
     
     if not 'bdist_wheel' in sys.argv[1:]:
