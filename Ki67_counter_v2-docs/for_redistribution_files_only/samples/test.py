@@ -16,6 +16,6 @@ my_Ki67_counter_v2 = Ki67_counter_v2.initialize()
 fillIn = "./68.jpg"
 output1In = "images/20231119_120625.911-output1.jpg"
 output2In = "images/20231119_120625.911-output2.jpg"
-my_Ki67_counter_v2.Ki67_counter_v2(fillIn, output1In, output2In, nargout=0)
-
+tt=my_Ki67_counter_v2.Ki67_counter_v2(fillIn, output1In, output2In, nargout=0)
+print(tt)
 my_Ki67_counter_v2.terminate()

@@ -8,6 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 /frontend/node_modules
+/image/*
 .DS_Store
 coverage
 *.local
