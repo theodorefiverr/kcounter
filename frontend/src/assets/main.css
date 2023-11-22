@@ -1,1 +1,8 @@
 @import './base.css';
+@import './font/clash-display/css/clash-display.css';
+@import './font/nunito/css/nunito.css';
+
+
+/* * {
+    font-family: 'ClashDisplay-SemiBold'
+} */

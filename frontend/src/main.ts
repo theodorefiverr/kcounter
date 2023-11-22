@@ -1,29 +1,33 @@
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
-import { Quasar } from 'quasar'
+import { createApp } from "vue";
+import { createPinia } from "pinia";
+import VOtpInput from "vue3-otp-input";
+import App from "./App.vue";
+import router from "./router";
+import AppInput from "@/components/common/AppInput.vue";
+import AppTextArea from "@/components/common/AppInputArea.vue";
+import AppButton from "@/components/common/AppButton.vue";
+import AppFileInput from "@/components/common/AppFileInput.vue";
+import AppSelect from "@/components/common/AppSelect.vue";
+import { Icon } from '@iconify/vue';
+import Notifications from "@kyvg/vue3-notification";
+import "./assets/main.css";
+import { appGet } from "./utils/axios";
 
-// Import icon libraries
-import '@quasar/extras/roboto-font-latin-ext/roboto-font-latin-ext.css'
-import '@quasar/extras/material-icons/material-icons.css'
-import '@quasar/extras/mdi-v6/mdi-v6.css'
-import '@quasar/extras/fontawesome-v5/fontawesome-v5.css'
-import '@quasar/extras/line-awesome/line-awesome.css'
-// Import Quasar css
-import 'quasar/src/css/index.sass'
+const app = createApp(App);
 
-import App from './App.vue'
-import router from './router'
+app.use(createPinia());
+app.use(Notifications)
+app.component("app-input", AppInput);
+app.component("app-textarea", AppTextArea);
+app.component("app-button", AppButton);
+app.component("app-select", AppSelect);
+app.component("app-icon", Icon);
+app.component("app-file-imput", AppFileInput);
+app.component("v-otp-input", VOtpInput);
 
-import './assets/main.css'
-import './style.css'
-import './assets/Satoshi/css/satoshi.css'
 
-const app = createApp(App)
-app.use(Quasar, {
-    plugins: {
-    }, // import Quasar plugins and add here
-  })
-app.use(createPinia())
-app.use(router)
 
-app.mount('#app')
+app.use(router);
+app.mount("#app");
+
+

@@ -1,0 +1,1 @@
+import{H as a,v as i,G as n}from"./index-3298ba1d.js";const l=a("driver",()=>{const s=i();return{driverData:s,getDrivers:o=>n("drivers/all").then(({data:e})=>{e.status&&(s.value=e,console.log("message"),o(e.message,void 0))}).catch(e=>{var t;console.log("e");const r=(t=e.response.data)==null?void 0:t.message;console.log(r),o(void 0,r??e)})}});export{l as u};
