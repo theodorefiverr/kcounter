@@ -29,7 +29,6 @@
   </button>
   <button
     v-else
-    @click="click"
     :disabled="disabled ?? false"
     size="lg"
     class="w-full h-[56px] rounded-xl flex items-center justify-center"
