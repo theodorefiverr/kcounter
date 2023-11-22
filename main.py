@@ -11,7 +11,10 @@ from cleaner import delete_old_images
 
 
 app = FastAPI()
-origins = ['http://localhost:5174']
+origins = [
+        "*",  # for local
+    ]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
