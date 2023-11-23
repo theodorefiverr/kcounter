@@ -6,7 +6,7 @@
           Report a discrepancy
         </p>
       </template>
-      <form>
+      <form @submit.prevent="proceed">
         <app-input
           v-model="q1"
           name="company"
@@ -27,7 +27,7 @@
           :disabled="true"
           required
         ></app-textarea>
-        <app-button @click="proceed" :loading="loading"> Proceed</app-button>
+        <app-button :loading="loading"> Proceed</app-button>
       </form>
     </ModalWrapper>
   </div>
