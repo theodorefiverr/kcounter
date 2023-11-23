@@ -58,7 +58,7 @@ const proceed = async () => {
       Math.ceil((counterStore.counterData?.data?.count ?? 0) * 100) / 100 + "%",
     image: imageUrl,
     comment: q2.value,
-    // recipient: "aaishah.raquib@gmail.com",
+    recipient: "aaishah.raquib@gmail.com",
     subject: "New Ki67 Feedback",
   });
   loading.value = true;
