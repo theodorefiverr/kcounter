@@ -26,7 +26,7 @@
         :disabled="true"
         required
       ></app-textarea>
-      <app-button @click="proceed" :loading="!true"> Proceed</app-button>
+      <app-button @click="proceed" :loading="loading"> Proceed</app-button>
     </ModalWrapper>
   </div>
 </template>
@@ -37,12 +37,43 @@ import { onUnmounted, ref } from "vue";
 import ModalWrapper from "@/components/common/modal/ModalWrapper.vue";
 import { uploadFile } from "@/utils/firebase/storage";
 import { useCounterStore } from "@/stores/counter";
+import { appPostRaw } from "@/utils/axios";
+import { notify } from "@/utils/notify";
 
 const loading = ref(false);
 const counterStore = useCounterStore();
 const q1 = ref("");
 const q2 = ref("");
-const proceed = () => {};
+const proceed = () => {
+  loading.value = true;
+  window.scrollTo(0, 0);
+  document.body.scrollTop = 0;
+  appPostRaw({
+    url: "https://script.google.com/macros/s/AKfycbzGwY2UKd9v2zyYo1bbnGcbDBNSV7jNpXfnu9TdLmplEZ7RVHF_wfNz8Aftm_UxYLqd/exec",
+    body: {
+      pCount: "89%",
+      aCount: "77%",
+      image:
+        "https://firebasestorage.googleapis.com/v0/b/cynthiaobasuyi.appspot.com/o/report%2FWed%20Nov%2022%202023%2012%3A42%3A37%20GMT%2B0100%20(West%20Africa%20Standard%20Time)?alt=media&token=0bdfa57c-643c-4234-8469-7e58f3151cb6",
+      comment:
+        "This is a really simple email template. Its sole purpose is to get the recipient to click the button with no distractions.",
+    },
+  })
+    .then(({ data }) => {
+      loading.value = false;
+      notify({
+        type: data.status ? "success" : "error",
+        title: data.message,
+      });
+    })
+    .catch(() => {
+      loading.value = false;
+      notify({
+        type: "error",
+        title: "Could not process response",
+      });
+    });
+};
 const close = () => {
   modal.value?.hide();
 };

@@ -12,6 +12,8 @@ export const appPost = ({body,url}:{body:any,url:string})=>axios.post(baseUrl+ur
     },
   })
 
+  export const appPostRaw = ({body,url}:{body:any,url:string})=>axios.post(url,body)
+
   export const appGet = (url:string)=> axios.get(baseUrl+url,{
     headers: {
       Authorization: `Bearer ${Cookies.get("token")}`,
