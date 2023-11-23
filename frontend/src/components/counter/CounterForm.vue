@@ -70,7 +70,12 @@
                 </header>
               </div>
             </drag-drop-file>
-            <app-button :loading="loading"> Calculate </app-button>
+            <app-button
+              :disabled="!(counterStore.formValues?.image_url ?? false)"
+              :loading="loading"
+            >
+              Calculate
+            </app-button>
           </div>
         </div>
       </form>
@@ -129,6 +134,9 @@ const setFile = (file: File[]) => {
 // const currentHost = window.location.protocol + '//' + window.location.host
 
 const calculate = () => {
+  if (!(counterStore.formValues?.image_url ?? false)) {
+    return;
+  }
   loading.value = true;
   window.scrollTo(0, 0);
   document.body.scrollTop = 0;

@@ -12,7 +12,15 @@ export const appPost = ({body,url}:{body:any,url:string})=>axios.post(baseUrl+ur
     },
   })
 
-  export const appPostRaw = ({body,url}:{body:any,url:string})=>axios.post(url,body)
+export const postReq = ({  body, url, result, error, onFinally }:{
+    body: any
+    url: string
+    result: (value: any) => void
+    error: (value: any) => void
+    onFinally: () => void
+}) => {
+    axios.post(url, body).then(result).catch(error).finally(onFinally);
+}
 
   export const appGet = (url:string)=> axios.get(baseUrl+url,{
     headers: {

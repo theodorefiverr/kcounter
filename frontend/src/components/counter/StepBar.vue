@@ -4,7 +4,8 @@
       class="flex items-center w-full p-3 mb-3 gap-2 space-x-2 text-sm font-medium text-center text-gray-500 bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-400 sm:text-base dark:bg-gray-800 dark:border-gray-700 sm:p-4 sm:space-x-4 rtl:space-x-reverse"
     >
       <li
-        class="flex items-center gap-2"
+        @click="counterStore.currentStep = 1"
+        class="flex items-center gap-2 cursor-default"
         :class="{
           'text-blue-600 dark:text-blue-500': (currentStep ?? 1) === 1,
         }"
@@ -28,7 +29,8 @@
       </li>
 
       <li
-        class="flex items-center gap-3"
+        @click="proceed"
+        class="flex items-center gap-3 cursor-default"
         :class="{
           'text-blue-600 dark:text-blue-5000': (currentStep ?? 1) === 2,
         }"
@@ -41,9 +43,16 @@
 </template>
 
 <script setup lang="ts">
+import { useCounterStore } from "@/stores/counter";
+
+const counterStore = useCounterStore();
 defineProps<{
   currentStep: number;
 }>();
+
+const proceed = () => {
+  if (counterStore.counterData?.data.count) counterStore.currentStep = 2;
+};
 </script>
 
 <style scoped></style>
