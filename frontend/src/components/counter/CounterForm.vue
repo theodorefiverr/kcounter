@@ -9,71 +9,45 @@
             <span class="font-semibold">10X magnification</span>. If there is
             demand, we will expand it in future updates. For questions, you can
             contact Aaishah Raquib at
-            <a class="font-semibold" href="mailto:aaishah.raquib@gmail.com"
-              >aaishah.raquib@gmail.com</a
-            >
+            <a class="font-semibold" href="mailto:aaishah.raquib@gmail.com">aaishah.raquib@gmail.com</a>
           </p>
 
           <div class="w-form">
-            <label class="block label text-sm font-medium mt-5 text-gray-900"
-              >Threshold*</label
-            >
+            <label class="block label text-sm font-medium mt-5 text-gray-900">Threshold*</label>
             <p class="text-sm mb-2 text-gray-700">
               (The validated threshold is 0.56 - only change this if you know
               what you're doing.)
             </p>
-            <app-input
-              v-model="threshold"
-              name="company"
-              type="text"
-              class="text-field-3 w-input focus:outline-0"
-              placeholder="Input the company name you are applying for"
-              :disabled="true"
-              required
-            ></app-input>
+            <app-input v-model="threshold" name="company" type="text" class="text-field-3 w-input focus:outline-0"
+              placeholder="Input the company name you are applying for" :disabled="true" required></app-input>
             <div></div>
-            <label
-              for="email"
-              class="block mb-2 label text-sm font-medium mt-5 text-gray-900"
-              >Upload your Image format*</label
-            >
+            <label for="email" class="block mb-2 label text-sm font-medium mt-5 text-gray-900">Upload your Image
+              format*</label>
             <div ref="imageValidator" style="display: none">
               <!-- <tool-tip>You must add a an Image</tool-tip> -->
             </div>
 
             <drag-drop-file @upload="setFile">
-              <img
-                v-if="counterStore.formValues?.image_url"
-                :src="counterStore.formValues?.image_url"
-                class="rounded-lg h-full"
-                alt="sample"
-              />
+              <img v-if="counterStore.formValues?.image_url" :src="counterStore.formValues?.image_url"
+                class="rounded-lg h-full" alt="sample" />
               <div v-else class="flex flex-col justify-center items-center">
                 <div id="upload-icon" class="icon">
                   <app-icon icon="formkit:uploadcloud" width="100px" />
                 </div>
 
-                <p
-                  style="color: #6b7380"
-                  id="fileName"
-                  class="text-xl"
-                  v-if="counterStore.formValues?.image_file"
-                >
+                <p style="color: #6b7380" id="fileName" class="text-xl" v-if="counterStore.formValues?.image_file">
                   {{ counterStore.formValues?.image_file?.name }}
                 </p>
                 <header style="color: #6b7380" class="text-xl">
                   {{
-                    counterStore.formValues?.image_file == undefined
-                      ? "Drag or Upload image here"
-                      : ""
-                  }}
+        counterStore.formValues?.image_file == undefined
+          ? "Drag or Upload image here"
+          : ""
+      }}
                 </header>
               </div>
             </drag-drop-file>
-            <app-button
-              :disabled="!(counterStore.formValues?.image_url ?? false)"
-              :loading="loading"
-            >
+            <app-button :disabled="!(counterStore.formValues?.image_url ?? false)" :loading="loading">
               Calculate
             </app-button>
           </div>
@@ -100,6 +74,8 @@ import { computed, ref } from "vue";
 import DragDropFile from "@/components/common/DragDropFile.vue";
 import { useCounterStore } from "@/stores/counter";
 import { notify } from "@/utils/notify";
+import { logEvent } from "firebase/analytics";
+import { analytics } from "@/utils/firebase";
 
 const counterStore = useCounterStore();
 
@@ -150,6 +126,9 @@ const calculate = () => {
         });
     }, formData.value)
     .then(() => {
+      logEvent(analytics, 'task_completed', {
+        task_name: 'Uploaded An image'
+      });
       console.log(counterStore.counterData?.data);
       counterStore.currentStep = 2;
       loading.value = false;

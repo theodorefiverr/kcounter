@@ -48,7 +48,7 @@
             class="rounded-lg"
             alt="sample"
           />
-          <p class="font-semibold mb-3 text-center">Ki67 Negetive</p>
+          <p class="font-semibold mb-3 text-center">Ki67 Negative</p>
         </div>
       </div>
     </div>
