@@ -16,5 +16,13 @@ import { useCounterStore } from "@/stores/counter";
 import CounterForm from "@/components/counter/CounterForm.vue";
 import ResultView from "@/components/counter/ResultView.vue";
 import StepBar from "@/components/counter/StepBar.vue";
+import { onMounted } from "vue";
+import { logEvent } from "firebase/analytics";
+import { analytics } from "@/utils/firebase";
 const counterStore = useCounterStore();
+onMounted(()=>{
+  logEvent(analytics, 'page_view', {
+  page_path: '/', // dynamically set this based on the user's navigation
+});
+})
 </script>

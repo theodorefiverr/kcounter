@@ -15,6 +15,3 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const analytics = getAnalytics(app);
 
-logEvent(analytics, 'page_view', {
-  page_path: '/', // dynamically set this based on the user's navigation
-});

@@ -4,7 +4,7 @@
       <form class="space-y-6" @submit.prevent="calculate">
         <div>
           <p class="mt-4 text-center">
-            Please note that this app has only been validated/calibrated with
+            Please be informed that this app has only been validated/calibrated with
             <snap class="font-semibold">low-grade meningiomas</snap> at
             <span class="font-semibold">10X magnification</span>. If there is
             demand, we will expand it in future updates. For questions, you can

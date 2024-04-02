@@ -9,7 +9,7 @@
           Below are the images that we generated to separate the different cell
           types. Please review the images to make sure that we correctly
           classified Ki-67 positive versus negative cells. If they look wrong,
-          you may optionally
+          you may optionally.
         </span>
         <button
           @click="showModal"
