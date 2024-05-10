@@ -1,9 +1,0 @@
-README.md
-pyproject.toml
-setup.py
-Ki67_counter_v2/Ki67_counter_v2.ctf
-Ki67_counter_v2/__init__.py
-Ki67_counter_v2_R2023a.egg-info/PKG-INFO
-Ki67_counter_v2_R2023a.egg-info/SOURCES.txt
-Ki67_counter_v2_R2023a.egg-info/dependency_links.txt
-Ki67_counter_v2_R2023a.egg-info/top_level.txt

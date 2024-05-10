@@ -28,25 +28,6 @@ myobj = Ki67_counter_v2.initialize_runtime(['-nojvm', '-nodisplay'])
 myobj = Ki67_counter_v2.initialize()
 
 
-# @app.post("/count-cell")
-# async def test(image_file: UploadFile, threshold: float = 0.56):
-#     try:
-#         contents = await image_file.read()
-#         # Create a NamedTemporaryFile to hold the image as a physical file on disk
-#         temp_file = NamedTemporaryFile(mode="wb", delete=False)
-#         # Write the contents of the uploaded file to the temporary file
-#         temp_file.write(contents)
-#         temp_file.flush()
-#         # Call the Ki67_counter function with the temporary file path and threshold
-#         result = myobj.Ki67_counter(temp_file.name, threshold)
-#         # Close and remove the temporary file
-#         temp_file.close()
-#         # temp_file.unlink(missing_ok=True)
-#         return result
-#     except Exception as e:
-#         raise HTTPException(
-#             status_code=400, detail="Failed to process the image file.")
-
 @app.post("/count-cell")
 async def test(image_file: UploadFile):
     try:
