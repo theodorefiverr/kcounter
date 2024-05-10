@@ -1,7 +1,5 @@
-# import os
-# import Ki67_counter
 import datetime
-import Ki67_counter_v2
+from Ki67_counter_v3.for_redistribution_files_only import Ki67_counter_v3
 from fastapi import FastAPI, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
@@ -24,8 +22,8 @@ app.add_middleware(
 )
 
 
-myobj = Ki67_counter_v2.initialize_runtime(['-nojvm', '-nodisplay'])
-myobj = Ki67_counter_v2.initialize()
+myobj = Ki67_counter_v3.initialize_runtime(['-nojvm', '-nodisplay'])
+myobj = Ki67_counter_v3.initialize()
 
 
 @app.post("/count-cell")
@@ -43,7 +41,9 @@ async def test(image_file: UploadFile):
         timestamp_str = timestamp.strftime("%Y%m%d_%H%M%S.%f")[:-3]
         output1In = "images/" + timestamp_str + "-output1.jpg"
         output2In = "images/" + timestamp_str + "-output2.jpg"
-        result = myobj.Ki67_counter_v2(temp_file.name, output1In, output2In)
+        autoContract = "images/" + timestamp_str + "-autoContract .jpg"
+        result = myobj.Ki67_counter_v3(temp_file.name, output1In, output2In,autoContract)
+
         # Close and remove the temporary file
         temp_file.close()
         # temp_file.unlink(missing_ok=True)
