@@ -13,3 +13,4 @@ myobj = Ki67_counter_v3.initialize()
 
 result = myobj.Ki67_counter_v3('./Picture3_67.png', output1In, output2In,autoContract)
 print(result)
+myobj.terminate()
