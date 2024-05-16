@@ -1,11 +1,9 @@
-import datetime
-from Ki67_counter_v3.for_redistribution_files_only import Ki67_counter_v3
-from fastapi import FastAPI, UploadFile, HTTPException
+from fastapi import FastAPI, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from tempfile import NamedTemporaryFile
 from fastapi.responses import JSONResponse
-from cleaner import delete_old_images
+from compute_count import computeCount
 
 
 app = FastAPI()
@@ -22,38 +20,23 @@ app.add_middleware(
 )
 
 
-myobj = Ki67_counter_v3.initialize_runtime(['-nojvm', '-nodisplay'])
-myobj = Ki67_counter_v3.initialize()
-
-
 @app.post("/count-cell")
 async def test(image_file: UploadFile):
     try:
-        delete_old_images("images",5)
         contents = await image_file.read()
-        # Create a NamedTemporaryFile to hold the image as a physical file on disk
         temp_file = NamedTemporaryFile(mode="wb", delete=False)
-        # Write the contents of the uploaded file to the temporary file
         temp_file.write(contents)
         temp_file.flush()
-        # Call the Ki67_counter function with the temporary file path and threshold
-        timestamp = datetime.datetime.now()
-        timestamp_str = timestamp.strftime("%Y%m%d_%H%M%S.%f")[:-3]
-        output1In = "images/" + timestamp_str + "-output1.jpg"
-        output2In = "images/" + timestamp_str + "-output2.jpg"
-        autoContract = "images/" + timestamp_str + "-autoContract .jpg"
-        result = myobj.Ki67_counter_v3(temp_file.name, output1In, output2In,autoContract)
-
-        # Close and remove the temporary file
+        image_file_path = temp_file.name
+        result, output1In, output2In, autoContract = computeCount(image_file_path)
         temp_file.close()
-        # temp_file.unlink(missing_ok=True)
-        # return result
         return JSONResponse(
             status_code=200,
             content={"status": True, "message":"successfully", "data":{
                 "count": result,
                 "output1": output1In,
-                "output2": output2In
+                "output2": output2In,
+                "autoContract": autoContract
             }}
         )
     except Exception as e:

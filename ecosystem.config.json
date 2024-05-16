@@ -1,0 +1,9 @@
+{
+  "apps": [{
+    "name": "myapp",
+    "script": "gunicorn",
+    "args": "main:app -w 2 -k uvicorn.workers.UvicornWorker -b '0.0.0.0:4000'",
+    "interpreter": "./venv/bin/python",
+    "exec_mode": "fork"
+  }]
+}
