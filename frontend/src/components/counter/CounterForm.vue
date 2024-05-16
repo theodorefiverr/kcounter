@@ -9,7 +9,8 @@
             <span class="font-semibold">10X magnification</span>. If there is
             demand, we will expand it in future updates. For questions, you can
             contact Aaishah Raquib at
-            <a class="font-semibold" href="mailto:aaishah.raquib@gmail.com">aaishah.raquib@gmail.com</a>
+            <a class="font-semibold" href="mailto:aaishah.raquib@gmail.com">aaishah.raquib@gmail.com.</a> <br/> 
+                       See below for an example of what your image should look like.  Most recent revision 5/4/2024.
           </p>
 
           <div class="w-form">

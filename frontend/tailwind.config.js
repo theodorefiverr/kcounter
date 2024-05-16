@@ -28,9 +28,9 @@ module.exports = {
         }
         
       },
-      fontFamily: {
-        sans: ['ClashDisplay-Variable'],
-      },
+      // fontFamily: {
+      //   sans: ['ClashDisplay-Variable'],
+      // },
       aspectRatio: {
         '4/3': '4 / 3',
       },
