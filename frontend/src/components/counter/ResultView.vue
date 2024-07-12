@@ -26,7 +26,7 @@
       <div>
         <p class="font-bold text-6xl text-primary text-center my-5">
           {{
-            Math.ceil((counterStore.counterData?.data?.count ?? 0) * 100) / 100
+            result>95?">95":result
           }}%
         </p>
       </div>
@@ -56,7 +56,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import FeedBackModal from "@/components/counter/FeedBackModal.vue";
 import FeedBack from "./FeedBack.vue";
 import { useCounterStore } from "@/stores/counter";
@@ -72,6 +72,10 @@ const showModal = () => {
     (feedBackRef.value as { show: () => void }).show();
   }
 };
+
+const result = computed(() => {
+  return Math.ceil((counterStore.counterData?.data?.count ?? 0) * 100) / 100;
+});
 </script>
 
 <style scoped></style>

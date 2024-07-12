@@ -40,6 +40,7 @@ async def test(image_file: UploadFile):
             }}
         )
     except Exception as e:
+        print(e)
         raise JSONResponse(
             status_code=200,
             content={"status": False, "message":f"{e}", "data":e}
