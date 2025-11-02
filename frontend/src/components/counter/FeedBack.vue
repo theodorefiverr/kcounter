@@ -7,26 +7,13 @@
         </p>
       </template>
       <form @submit.prevent="proceed">
-        <app-input
-          v-model="q1"
-          name="company"
-          type="text"
+        <app-input v-model="q1" name="company" type="text"
           label="What do you think the count should have been? It's OK if you only have a rough approximation."
-          class="text-field-3 w-input focus:outline-0 border-none px-4"
-          placeholder=""
-          :disabled="true"
-          required
-        ></app-input>
-        <app-textarea
-          v-model="q2"
-          name="company"
-          type="text"
-          label="Do you have any other comments?"
-          class="text-field-3 w-input focus:outline-0 border-none"
-          placeholder=""
-          :disabled="true"
-          required
-        ></app-textarea>
+          class="text-field-3 w-input focus:outline-0 border-none px-4" placeholder="" :disabled="true"
+          required></app-input>
+        <app-textarea v-model="q2" name="company" type="text" label="Do you have any other comments?"
+          class="text-field-3 w-input focus:outline-0 border-none" placeholder="" :disabled="true"
+          required></app-textarea>
         <app-button :loading="loading"> Proceed</app-button>
       </form>
     </ModalWrapper>
@@ -53,20 +40,19 @@ const proceed = async () => {
   }
   const imageUrl = await upload();
   const bb = JSON.stringify({
-    pCount: q1.value + "%",
-    aCount:
+    expectedCount: q1.value + "%",
+    count:
       Math.ceil((counterStore.counterData?.data?.count ?? 0) * 100) / 100 + "%",
-    image: imageUrl,
-    comment: q2.value,
-    recipient: "aaishah.raquib@gmail.com",
-    subject: "New Ki67 Feedback",
+    imageUrl,
+    comments: q2.value,
+    to: "aaishah.raquib@gmail.com",
   });
   loading.value = true;
   window.scrollTo(0, 0);
   document.body.scrollTop = 0;
   loading.value = true;
   postReq({
-    url: "https://script.google.com/macros/s/AKfycbzGwY2UKd9v2zyYo1bbnGcbDBNSV7jNpXfnu9TdLmplEZ7RVHF_wfNz8Aftm_UxYLqd/exec",
+    url: "https://script.google.com/macros/s/AKfycbxXVAc-gsUOF0UeT2l13Odm86phnzMrHDwhagSmFjh3rVsbLcyP3ePxQWMc9ho_NwuL/exec",
     body: bb,
     result: ({ data }) => {
       loading.value = !loading.value;
